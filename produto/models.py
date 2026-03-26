@@ -32,8 +32,8 @@ class Produto(models.Model):
             self.slug = f'{slugify(self.nome)}-{self.pk}'
             
         # Se for produto simples e não tiver variação, cria uma automática
-        if self.tipo == 'S':
-            from produto.models import Variacao # Ajuste o import conforme seu app
+        if self.tipo == 'S' and not self.variacao_set.exists():
+            from produto.models import Variacao 
             Variacao.objects.create(
                 produto=self,
                 nome="",
