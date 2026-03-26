@@ -9,7 +9,7 @@
 
                     {% for produto in produtos %}
                     <div class="card">
-                        {% if produto.imagem%}
+                        {% if produto.imagem %}
                         <a href="{{produto.slug}}">
                         <img class="card-img-top" src="{{produto.imagem.url}}" alt="{{produto.nome}}">
                         </a>
