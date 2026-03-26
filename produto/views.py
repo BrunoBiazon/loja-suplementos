@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views import View
 from django.http import HttpResponse
+from . import models
 
 class ListaProdutos(ListView):
-    def get(self, request, *args, **kwargs):
-        return HttpResponse("<h1>teste</h1>")
-
+    model = models. Produto
+    template_name = 'produto/lista.html'
+    context_object_name = 'produtos'
 class Detalheproduto(View):
     pass
 
