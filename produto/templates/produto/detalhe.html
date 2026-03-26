@@ -38,19 +38,19 @@
                                     <select id="select-variacoes" name="vid" class="form-control form-control-lg">
                                         {% for variacao in produto.variacao_set.all %}
 
-                                        {% if variacao.preco_promocional %}
+                                        {% if variacao.preco_promocional  %}
                                         <option data-preco="{{ variacao.preco|formata_preco }}" 
                                                 data-preco-promocional="{{ variacao.preco_promocional|formata_preco }}" 
                                                 value="{{ variacao.id }}">
-                                            {% if variacao.nome %}
+                                            {% if variacao.preco_promocional > 0 %}
                                             {{ variacao.nome }}
                                             {% else %}
-                                            {{ variacao }}
+                                            {{ produto.nome }}
                                             {% endif %}
                                         </option>
                                         {% else %}
                                         <option data-preco="{{ variacao.preco|formata_preco }}" value="{{ variacao.id }}">
-                                            {% if variacao.nome %}
+                                            {% if variacao.preco_promocional > 0 %}
                                             {{ variacao.nome }}
                                             {% else %}
                                             {{ variacao }}

@@ -40,7 +40,7 @@ class AdicionarAoCarrinho(View):
             carrinho = self.request.session['carrinho']
             
             if variacao_id in carrinho:
-                TODO
+                TODO 
                 pass
             else:   
                 TODO

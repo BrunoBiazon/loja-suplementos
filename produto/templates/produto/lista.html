@@ -19,7 +19,7 @@
                             <h5 class="card-title">{{ produto.nome }}</h5>
                             <p class="card-text">{{ produto.descricao_curta |truncatechars:80 }} </p>
                             <div class="container product-price-block text-center">
-                                {% if produto.preco_marketing_promocional%}
+                                {% if produto.preco_marketing_promocional > 0%}
                                 <span class="product-price">
                                     {{produto.preco_marketing_promocional|formata_preco}}
                                 </span>
@@ -28,7 +28,7 @@
                                 </span>
                                 {% else %}
                                 <span class="product-price">
-                                    {{produto.preco_marketing_promocional}}
+                                    {{produto.preco_marketing| formata_preco}}
                                 </span>
                                 {% endif %}
                             </div>

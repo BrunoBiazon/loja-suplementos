@@ -11,7 +11,7 @@ class Produto(models.Model):
     imagem = models.ImageField(upload_to='produto_imagens/%Y/%m', blank=True, null=True)
     slug = models.SlugField(unique=True, blank = True, null= True)
     preco_marketing = models.FloatField()
-    preco_marketing_promocional = models.FloatField(default=0)
+    preco_marketing_promocional = models.FloatField(default= 0)
     tipo = models.CharField(
         default='V',
         max_length=1,
@@ -30,6 +30,16 @@ class Produto(models.Model):
 
         if not self.slug:
             self.slug = f'{slugify(self.nome)}-{self.pk}'
+            
+        # Se for produto simples e não tiver variação, cria uma automática
+        if self.tipo == 'S':
+            from produto.models import Variacao # Ajuste o import conforme seu app
+            Variacao.objects.create(
+                produto=self,
+                nome="",
+                preco=self.preco_marketing,
+                preco_promocional=self.preco_marketing_promocional
+            )
 
         super().save(*args, **kwargs)
 
