@@ -115,6 +115,11 @@ class Promocao(ListView):
     context_object_name = 'produtos'
     paginate_by = 10
     
-    
+    def get_queryset(self):
+        ProdPromocaoRelampago = super().get_queryset() 
+        
+        ProdPromocaoRelampago = ProdPromocaoRelampago.filter(promocao_relampago='S') 
+        
+        return ProdPromocaoRelampago
 class Finalizar(View):
     pass

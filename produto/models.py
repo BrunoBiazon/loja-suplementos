@@ -13,7 +13,7 @@ class Produto(models.Model):
     preco_marketing = models.FloatField()
     preco_marketing_promocional = models.FloatField(default= 0)
     promocao_relampago = models.CharField(
-        default='Não',
+        default='N',
         max_length=1,
         choices=(
             ('N', 'Não'),
