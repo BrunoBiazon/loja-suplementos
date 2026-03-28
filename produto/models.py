@@ -12,6 +12,14 @@ class Produto(models.Model):
     slug = models.SlugField(unique=True, blank = True, null= True)
     preco_marketing = models.FloatField()
     preco_marketing_promocional = models.FloatField(default= 0)
+    promocao_relampago = models.CharField(
+        default='Não',
+        max_length=1,
+        choices=(
+            ('N', 'Não'),
+            ('S', 'Sim'),
+        )
+    )
     tipo = models.CharField(
         default='V',
         max_length=1,

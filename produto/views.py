@@ -8,12 +8,12 @@ from . import models
 from pprint import pprint # teste carrinho
 
 class ListaProdutos(ListView):
-    model = models. Produto
+    model = models.Produto
     template_name = 'produto/lista.html'
     context_object_name = 'produtos'
     paginate_by = 10
 class Detalheproduto(DetailView):
-    model = models. Produto
+    model = models.Produto
     template_name = 'produto/detalhe.html'
     context_object_name = 'produto'
     slug_url_kwarg = 'slug'
@@ -106,7 +106,15 @@ class RemoverDoCarrinho(View):
         pass
 
 class Carrinho(View):
-    def get(self, *args, **kwargs): 
-        return render(self.request, 'produto/carrinho.html')
+    def get(self, request, *args, **kwargs): 
+        return render(request, 'produto/carrinho.html')
+    
+class Promocao(ListView):
+    model = models.Produto
+    template_name = 'produto/promocao.html'
+    context_object_name = 'produtos'
+    paginate_by = 10
+    
+    
 class Finalizar(View):
     pass
