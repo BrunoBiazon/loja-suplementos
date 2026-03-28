@@ -102,9 +102,11 @@ class AdicionarAoCarrinho(View):
         return redirect(http_referer)
 
 class RemoverDoCarrinho(View):
-    pass
+     def get(self, request, *args, **kwargs): 
+        pass
 
 class Carrinho(View):
-    pass
+    def get(self, *args, **kwargs): 
+        return render(self.request, 'produto/carrinho.html')
 class Finalizar(View):
     pass
