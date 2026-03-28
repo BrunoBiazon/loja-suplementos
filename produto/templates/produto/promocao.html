@@ -29,7 +29,7 @@
                         
                         <div class="product-price-block mt-auto pb-3">
                             {% if produto.preco_marketing_promocional > 0 %}
-                                <div class="product-price text-info h4 mb-0">
+                                <div class="product-price text-danger h4 mb-0">
                                     {{ produto.preco_marketing_promocional|formata_preco }}
                                 </div>
                                 <span class="product-old-price text-muted">
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="card-footer bg-transparent border-top-0 p-3">
-                        <a href="{{ produto.slug }}" class="btn btn-primary btn-block shadow-sm">
+                        <a href="{{ produto.slug }}" class="btn btn-danger btn-block shadow-sm">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             Comprar
                         </a>
