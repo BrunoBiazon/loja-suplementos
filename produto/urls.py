@@ -11,4 +11,12 @@ urlpatterns = [
     path('carrinho/', views.Carrinho.as_view(), name= "carrinho"),
     path('finalizar/', views.Finalizar.as_view(), name= "finalizar"),
     path('promocao/', views.Promocao.as_view(), name= "promocao"),
+    path('snakes/', views.Snakes.as_view(), name="snakes"),
+    path('whey/', views.Whey.as_view(), name="whey"),
+    path('saude/', views.Saude.as_view(), name="saude"),
+    path('creatina/', views.Creatina.as_view(), name="creatina"),
+    path('pretreino/', views.Pretreino.as_view(), name="pretreino"),
+    path('termo/', views.Termo.as_view(), name="termo"),
+    path('hiper/', views.Hiper.as_view(), name="hiper"),
+    path('endurance/', views.Endurance.as_view(), name="endurance"),
     ]   
