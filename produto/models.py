@@ -28,6 +28,22 @@ class Produto(models.Model):
             ('S', 'Simples'),
         )
     )
+    
+    categoria = models.CharField(
+            max_length=50,
+            default="Outro",
+            choices=(
+                ('Outro', 'Outro'),
+                ('Whey', 'Whey Protein'),
+                ('Saude', 'Saúde e Bem-estar'),
+                ('Creatina', 'Creatina'),
+                ('Snake', 'Snakes/Lanches'),
+                ('Pretreino', 'Pré-treino'),
+                ('Termo', 'Termogênico'),
+                ('Hiper', 'Hipercalórico'),
+                ('Endurance', 'Endurance'),
+            )
+    )
 
     def __str__(self):
         return self.nome
