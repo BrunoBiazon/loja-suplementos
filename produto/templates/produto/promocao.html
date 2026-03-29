@@ -8,7 +8,6 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="row d-flex align-items-stretch">
-
             {% for produto in produtos %}
             <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
                 <div class="card h-100 w-100 shadow-sm border-light">
@@ -26,7 +25,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title font-weight-bold">{{ produto.nome }}</h5>
                         <p class="card-text text-muted">{{ produto.descricao_curta|truncatechars:75 }}</p>
-                        
+
                         <div class="product-price-block mt-auto pb-3">
                             {% if produto.preco_marketing_promocional > 0 %}
                                 <div class="product-price text-danger h4 mb-0">
@@ -57,7 +56,6 @@
                 <p class="alert alert-warning">Nenhum produto encontrado.</p>
             </div>
             {% endfor %}
-
         </div>
     </div>
 </div>
