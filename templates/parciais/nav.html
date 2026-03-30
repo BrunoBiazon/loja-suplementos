@@ -2,25 +2,24 @@
 
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top shadow-sm">
     <a class="navbar-brand" href="{% url 'produto:lista' %}">Smart Suplementos</a>
+    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto align-items-center">
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'produto:promocao' %}">Promoções Relâmpago<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'produto:promocao' %}">Promoções Relâmpago</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
+
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCat" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Categorias
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu shadow" aria-labelledby="navbarDropdownCat">
                     <a class="dropdown-item" href="{% url 'produto:whey' %}">Whey Proteins</a>
                     <a class="dropdown-item" href="{% url 'produto:creatina' %}">Creatinas</a>
                     <a class="dropdown-item" href="{% url 'produto:saude' %}">Saúde</a>
@@ -29,29 +28,43 @@
                     <a class="dropdown-item" href="{% url 'produto:termo' %}">Termogênicos</a>
                     <a class="dropdown-item" href="{% url 'produto:endurance' %}">Endurance</a>
                     <a class="dropdown-item" href="{% url 'produto:snacks' %}">Snacks</a>
-
                 </div>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link nav-cart-link active" href="{% url 'produto:carrinho' %}">
-                    <span class="nav-cart-text mr-1">
-                        Carrinho
-                    </span>
+                <a class="nav-link nav-cart-link" href="{% url 'produto:carrinho' %}">
+                    <span class="nav-cart-text mr-1">Carrinho</span>
                     <span class="nav-cart-count mr-1">
                         <strong>{{ total_itens_carrinho }} x</strong>
                     </span>
-                    <span class="nav-cart-icon mr-2">
-                        <i class="fas fa-shopping-cart"></i>
-                    </span>
+                    <i class="fas fa-shopping-cart"></i>
                 </a>
             </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownConta" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2">Conta</span>
+                    <i class="fas fa-user-circle fa-lg"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="navbarDropdownConta"> <!-- fazer uma condicional para caso o user ja tenha logado-->
+                    <a class="dropdown-item" href="#">Detalhes da conta</a>
+                    <a class="dropdown-item" href="#">Pedidos</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar produto..." aria-label="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+
+        <form class="form-inline my-2 my-lg-0 ml-lg-3">
+            <div class="input-group">
+                <input class="form-control form-control-sm" type="search" placeholder="Buscar produto..." aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sm btn-secondary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
         </form>
     </div>
 </nav>

@@ -30,8 +30,8 @@ urlpatterns = [
     path('hiper/<slug>', views.Detalheproduto.as_view(), name="detalhe_hiper"),
     path('endurance/<slug>', views.Detalheproduto.as_view(), name="detalhe_endurance"),
 
-    #path('perfil/', views.Perfil.as_view(), name="perfil"),
-    #path('pedido/', views.Pedido.as_view(), name="pedido"),
+    #path('perfil/', views.Perfil.as_view(), name="perfil"), 
+    #path('pedido/', views.Pedido.as_view(), name="pedido"), 
 
     path('<slug>', views.Detalheproduto.as_view(), name="detalhe"),
 ]
