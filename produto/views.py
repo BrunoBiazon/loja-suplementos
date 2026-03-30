@@ -11,7 +11,7 @@ class ListaProdutos(ListView):
     model = models.Produto
     template_name = 'produto/lista.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
 class Detalheproduto(DetailView):
     model = models.Produto
     template_name = 'produto/detalhe.html'
@@ -113,7 +113,7 @@ class Promocao(ListView):
     model = models.Produto
     template_name = 'produto/promocao.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdPromocaoRelampago = super().get_queryset() 
@@ -126,7 +126,7 @@ class Snacks(ListView):
     model = models.Produto
     template_name = 'produto/snacks.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdSnacks = super().get_queryset() 
@@ -140,7 +140,7 @@ class Whey(ListView):
     model = models.Produto
     template_name = 'produto/whey.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdWhey = super().get_queryset() 
@@ -152,7 +152,7 @@ class Saude(ListView):
     model = models.Produto
     template_name = 'produto/saude.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdSaude = super().get_queryset() 
@@ -164,7 +164,7 @@ class Creatina(ListView):
     model = models.Produto
     template_name = 'produto/creatina.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdCreatina = super().get_queryset() 
@@ -176,7 +176,7 @@ class Pretreino(ListView):
     model = models.Produto
     template_name = 'produto/pretreino.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdPretreino = super().get_queryset() 
@@ -188,7 +188,7 @@ class Termo(ListView):
     model = models.Produto
     template_name = 'produto/termo.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdTermo = super().get_queryset() 
@@ -200,7 +200,7 @@ class Hiper(ListView):
     model = models.Produto
     template_name = 'produto/hiper.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdHiper = super().get_queryset() 
@@ -212,7 +212,7 @@ class Endurance(ListView):
     model = models.Produto
     template_name = 'produto/endurance.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdEndurance = super().get_queryset() 
@@ -224,7 +224,7 @@ class Outro(ListView):
     model = models.Produto
     template_name = 'produto/outro.html'
     context_object_name = 'produtos'
-    paginate_by = 10
+    paginate_by = 12
     
     def get_queryset(self):
         ProdOutro = super().get_queryset() 
