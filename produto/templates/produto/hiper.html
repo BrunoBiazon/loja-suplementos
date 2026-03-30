@@ -11,7 +11,7 @@
                 <div class="card h-100 w-100 shadow-sm border-light">
                     
                     {% if produto.imagem %}
-                    <a href="{{ produto.slug }}">
+                    <a href="{% url 'produto:detalhe_hiper' produto.slug %}">
                         <img class="card-img-top" src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
                     </a>
                     {% else %}
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="card-footer bg-transparent border-top-0 p-3">
-                        <a href="{{ produto.slug }}" class="btn btn-danger btn-block shadow-sm">
+                        <a href="{% url 'produto:detalhe_hiper' produto.slug %}" class="btn btn-danger btn-block shadow-sm">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             Comprar
                         </a>
@@ -63,6 +63,5 @@
         {% include 'parciais/_pagination.html' %}
     </div>
 </div>
-
 
 {% endblock %}
