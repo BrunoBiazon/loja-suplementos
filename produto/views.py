@@ -131,7 +131,7 @@ class Snacks(ListView):
     def get_queryset(self):
         ProdSnacks = super().get_queryset() 
         
-        ProdSnacks = ProdSnacks.filter(categoria='snake') 
+        ProdSnacks =ProdSnacks.filter(categoria='Snacks').order_by('-id') 
         
         return ProdSnacks
     
