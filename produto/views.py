@@ -122,31 +122,19 @@ class Promocao(ListView):
         
         return ProdPromocaoRelampago
     
-class Snakes(ListView):
+class Snacks(ListView):
     model = models.Produto
-    template_name = 'produto/snakes.html'
+    template_name = 'produto/snacks.html'
     context_object_name = 'produtos'
     paginate_by = 10
     
     def get_queryset(self):
-        ProdSnakes = super().get_queryset() 
+        ProdSnacks = super().get_queryset() 
         
-        ProdSnakes = ProdSnakes.filter(categoria='Snake') 
+        ProdSnacks = ProdSnacks.filter(categoria='snake') 
         
-        return ProdSnakes
+        return ProdSnacks
     
-class Snakes(ListView):
-    model = models.Produto
-    template_name = 'produto/snakes.html'
-    context_object_name = 'produtos'
-    paginate_by = 10
-    
-    def get_queryset(self):
-        ProdSnakes = super().get_queryset() 
-        
-        ProdSnakes = ProdSnakes.filter(categoria='Snake') 
-        
-        return ProdSnakes
     
 class Whey(ListView):
     model = models.Produto

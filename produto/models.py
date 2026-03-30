@@ -37,7 +37,7 @@ class Produto(models.Model):
                 ('Whey', 'Whey Protein'),
                 ('Saude', 'Saúde e Bem-estar'),
                 ('Creatina', 'Creatina'),
-                ('Snake', 'Snakes/Lanches'),
+                ('Snacks', 'Snakes/Lanches'),
                 ('Pretreino', 'Pré-treino'),
                 ('Termo', 'Termogênico'),
                 ('Hiper', 'Hipercalórico'),
