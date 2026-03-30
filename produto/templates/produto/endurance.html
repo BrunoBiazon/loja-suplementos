@@ -1,68 +1,113 @@
 {% extends 'base.html' %}
 {% load filtros %}
+{% load static %}
 
 {% block conteudo %}
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="row d-flex align-items-stretch">
-            {% for produto in produtos %}
-            <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
-                <div class="card h-100 w-100 shadow-sm border-light">
-                    
-                    {% if produto.imagem %}
-                        <a href="{% url 'produto:detalhe_endurance' produto.slug %}">
-                        <img class="card-img-top" src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
-                    </a>
-                    {% else %}
-                    <div class="card-img-none">
-                        <i class="fa fa-image fa-2x text-muted"></i>
-                    </div>
-                    {% endif %}
+<div class="container mt-5 mb-5">
+    
+    <div class="text-center mb-5 pb-3">
+        <h1 class="display-4 font-weight-bold">Linha Endurance</h1>
+        <p class="lead text-muted">Energia prolongada e hidratação avançada para atletas que não conhecem limites.</p>
+    </div>
 
-                    <div class="card-body d-flex flex-column text-center">
-                        <h5 class="card-title font-weight-bold">{{ produto.nome }}</h5>
-                        <p class="card-text text-muted">{{ produto.descricao_curta|truncatechars:75 }}</p>
+    <hr class="divisor-secao mb-5">
 
-                        <div class="product-price-block mt-auto pb-3">
-                            {% if produto.preco_marketing_promocional > 0 %}
-                                <div class="product-price text-danger h4 mb-0">
-                                    {{ produto.preco_marketing_promocional|formata_preco }}
-                                </div>
-                                <span class="product-old-price text-muted">
-                                    <small><s>{{ produto.preco_marketing|formata_preco }}</s></small>
-                                </span>
-                            {% else %}
-                                <div class="product-price text-info h4 mb-0">
-                                    {{ produto.preco_marketing|formata_preco }}
-                                </div>
-                                <small style="visibility: hidden;">&nbsp;</small>
-                            {% endif %}
-                        </div>
-                    </div>
+    <div class="row bloco-conteudo d-flex align-items-center mb-5">
+        <div class="col-md-7">
+            <h2 class="titulo-destaque">CarboGel. <span class="text-muted">Energia rápida e constante.</span></h2>
+            <p class="texto-descricao mt-3">O aliado perfeito para treinos de longa duração. Nossos géis de carboidrato fornecem uma liberação gradual de energia, evitando picos de insulina e garantindo que você mantenha o ritmo do início ao fim da prova.</p>
+            <p class="texto-descricao"><strong>Fácil digestão e absorção imediata para quem não pode perder tempo durante o percurso.</strong></p>
+        </div>
+        <div class="col-md-4">
+            <img class="img-fluid mx-auto imagem-destaque" src="{% static 'assets/custom/img/carbogel.png' %}" alt="CarboGel">
+        </div>
+    </div>
 
-                    <div class="card-footer bg-transparent border-top-0 p-3">
-                        <a href="{% url 'produto:detalhe_endurance' produto.slug %}"class="btn btn-danger btn-block shadow-sm">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            Comprar
-                        </a>
+    <hr class="divisor-secao mb-5">
+
+    <div class="row bloco-conteudo d-flex align-items-center mb-5">
+        <div class="col-md-7 order-md-2">
+            <h2 class="titulo-destaque">Eletrólitos. <span class="text-muted">Hidratação intracelular.</span></h2>
+            <p class="texto-descricao mt-3">Reponha o que o suor leva embora. Nossa fórmula de eletrólitos garante o equilíbrio de minerais essenciais como sódio, potássio e magnésio, prevenindo cãibras e mantendo a hidratação muscular em níveis ótimos.</p>
+            <p class="texto-descricao"><strong>Fundamental para manter a performance em climas quentes e treinos de alta intensidade.</strong></p>
+        </div>
+        <div class="col-md-4 order-md-1">
+            <img class="img-fluid mx-auto imagem-destaque" src="{% static 'assets/custom/img/elitrolito.png ' %}" alt="Eletrólitos">
+        </div>
+    </div>
+
+    <hr class="divisor-secao mb-5">
+
+    <div class="row bloco-conteudo d-flex align-items-center mb-5">
+        <div class="col-md-7">
+            <h2 class="titulo-destaque">Beta-Alanina. <span class="text-muted">Retarde a fadiga muscular.</span></h2>
+            <p class="texto-descricao mt-3">Aumente sua resistência. A Beta-Alanina atua no controle do pH do músculo, retardando a acidose e a sensação de queimação, permitindo que você sustente intensidades altas por muito mais tempo.</p>
+            <p class="texto-descricao"><strong>Ideal para ciclistas, corredores e triatletas que buscam o ápice do desempenho aeróbico.</strong></p>
+        </div>
+        <div class="col-md-4">
+            <img class="img-fluid mx-auto imagem-destaque" src="{% static 'assets/custom/img/betaalanina.png' %}" alt="Beta Alanina">
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row d-flex align-items-stretch">
+        {% for produto in produtos %}
+        <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
+            <div class="card h-100 w-100 shadow-sm border-light">
+                
+                {% if produto.imagem %}
+                <a href="{% url 'produto:detalhe_endurance' produto.slug %}">
+                    <img class="card-img-top" src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                </a>
+                {% else %}
+                <div class="card-img-none">
+                    <i class="fa fa-image fa-2x text-muted"></i>
+                </div>
+                {% endif %}
+
+                <div class="card-body d-flex flex-column text-center">
+                    <h5 class="card-title font-weight-bold">{{ produto.nome }}</h5>
+                    <p class="card-text text-muted">{{ produto.descricao_curta|truncatechars:75 }}</p>
+
+                    <div class="product-price-block mt-auto pb-3">
+                        {% if produto.preco_marketing_promocional > 0 %}
+                            <div class="product-price text-danger h4 mb-0">
+                                {{ produto.preco_marketing_promocional|formata_preco }}
+                            </div>
+                            <span class="product-old-price text-muted">
+                                <small><s>{{ produto.preco_marketing|formata_preco }}</s></small>
+                            </span>
+                        {% else %}
+                            <div class="product-price text-info h4 mb-0">
+                                {{ produto.preco_marketing|formata_preco }}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
+
+                <div class="card-footer bg-transparent border-top-0 p-3">
+                    <a href="{% url 'produto:detalhe_endurance' produto.slug %}" class="btn btn-danger btn-block shadow-sm">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        Comprar
+                    </a>
+                </div>
             </div>
-            {% empty %}
-            <div class="col-12 text-center mt-5">
-                <p class="alert alert-warning">Nenhum produto encontrado.</p>
-            </div>
-            {% endfor %}
+        </div>
+        {% empty %}
+        <div class="col-12 text-center mt-5">
+            <p class="alert alert-warning">Nenhum produto encontrado nesta categoria.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row mt-5">
+        <div class="col text-center">
+            {% include 'parciais/_pagination.html' %}
         </div>
     </div>
 </div>
-
-<div class="row mt-5">
-    <div class="col">
-        {% include 'parciais/_pagination.html' %}
-    </div>
-</div>
-
 
 {% endblock %}
