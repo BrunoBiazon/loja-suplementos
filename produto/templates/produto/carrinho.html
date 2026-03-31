@@ -1,7 +1,77 @@
 {% extends 'base.html' %}
+{% load filtros %}
 
 {% block conteudo %}
+<div class="container my-5">
+    {% if carrinho %}
+    <div class="row">
+        <div class="col">
+            <h3 class="mb-4">Seu Carrinho</h3>
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th class="d-none d-lg-table-cell">Imagem</th>
+                            <th>Produto</th>
+                            <th>V.</th>
+                            <th>QTD.</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in carrinho.values %}
+                        <tr>
+                            <td class="d-none d-lg-table-cell">
+                                {% if item.imagem %}
+                                    <img src="{{ item.imagem }}" class="img-fluid rounded" width="60">
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ item.produto_nome }}
+                            </td>
+                            <td>{{ item.variacao_nome }}</td>
+                            <td>{{ item.quantidade }}x</td>
+                            <td>{{ item.preco_quantitativo_promocional|formata_preco }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-{{request.session.carrinho}}
+    <div class="row mt-4">
+        <div class="col-lg-5">
+            <div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="h4 mb-0">Total Geral:</span>
+                    <span class="text-success h4 mb-0 font-weight-bold">
+                        {{ valor_total_carrinho|formata_preco }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-7 mt-4 mt-lg-0 d-flex align-items-end justify-content-lg-end">
+            <a class="btn btn-primary btn-lg px-4 mr-2 shadow-sm" href="#">
+                Finalizar Compra
+            </a>
+            <a class="btn btn-outline-secondary btn-lg px-4" href="{% url 'produto:lista' %}">
+                Continuar Comprando
+            </a>
+        </div>
+    </div>
 
-{%  endblock %}
+    {% else %}
+    <div class="row">
+        <div class="col-12 text-center mt-5 py-5 border rounded bg-light">
+            <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+            <h3>Seu carrinho está vazio!</h3>
+            <a href="{% url 'produto:lista' %}" class="btn btn-primary btn-lg mt-3">
+                Ir para a Loja
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
