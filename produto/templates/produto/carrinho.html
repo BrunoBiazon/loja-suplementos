@@ -35,7 +35,18 @@
                                 </a>
                             </td>
                             <td>{{ item.variacao_nome }}</td>
-                            <td>{{ item.quantidade }}x</td>
+                            <td>
+                                {{ item.quantidade }}x
+                                {% if item.preco_quantitativo_promocional %}
+
+                                    {{ item.preco_unitario_promocional|formata_preco}}
+
+                                {% else %}
+
+                                    {{ item.preco_unitario|formata_preco}}
+                                {%endif %}
+                            </td>
+
                             <td>{{ item.preco_quantitativo_promocional|formata_preco }}</td>
                         </tr>
                         {% endfor %}
