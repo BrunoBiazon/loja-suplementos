@@ -23,15 +23,21 @@
                         <tr>
                             <td class="d-none d-lg-table-cell">
                                 {% if item.imagem %}
-                                    <img src="{{ item.imagem }}" class="img-fluid rounded" width="60">
+                                    <a href="{% url 'produto:detalhe' item.slug %}">
+                                        <img src="{{ item.imagem }}" class="img-fluid rounded shadow-sm" width="60" alt="{{ item.produto_nome }}">
+                                    </a>
                                 {% endif %}
                             </td>
+
                             <td>
-                                {{ item.produto_nome }}
+                                <a href="{% url 'produto:detalhe' item.slug %}" class="text-dark text-decoration-none font-weight-bold">
+                                    {{ item.produto_nome }}
+                                </a>
                             </td>
                             <td>{{ item.variacao_nome }}</td>
                             <td>{{ item.quantidade }}x</td>
                             <td>{{ item.preco_quantitativo_promocional|formata_preco }}</td>
+                            {% if }
                         </tr>
                         {% endfor %}
                     </tbody>
