@@ -125,7 +125,6 @@ class RemoverDoCarrinho(View):
             request,
             f'O produto {produto_nome} foi removido do carrinho.'
             )
-
         return redirect(http_referer)
 class Carrinho(ListView):
     def get(self, request, *args, **kwargs):
