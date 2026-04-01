@@ -93,12 +93,25 @@ class RemoverDoCarrinho(View):
         variacao_id = request.GET.get('vid')
 
         if not variacao_id:
+            messages.error(
+                request,
+                f'O produto não foi encontrado',
+            )
+            
             return redirect(http_referer)
-
+            
         if not request.session.get('carrinho'):
+            messages.error(
+                request,
+                f'Erro ao tentar remover do carrinho',
+            )            
             return redirect(http_referer)
 
         if variacao_id not in request.session['carrinho']:
+            messages.error(
+                request,
+                f'O produto não foi encontrado no carrinho',
+            )                 
             return redirect(http_referer)
 
         carrinho = request.session['carrinho']
