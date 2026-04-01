@@ -16,6 +16,7 @@
                             <th>V.</th>
                             <th>QTD.</th>
                             <th>Total</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,15 +40,22 @@
                                 {{ item.quantidade }}x
                                 {% if item.preco_quantitativo_promocional %}
 
-                                    {{ item.preco_unitario_promocional|formata_preco}}
+                                    {{ item.preco_unitario_promocional |formata_preco}}
 
                                 {% else %}
 
                                     {{ item.preco_unitario|formata_preco}}
                                 {%endif %}
                             </td>
+                            <td>
+                                {{ item.preco_quantitativo_promocional|formata_preco }}
+                            </td>
+                            <td>                             
+                                <a href="{% url 'produto:removerdocarrinho' %}?vid={{ item.variacao_id }}" class="btn btn-outline-danger btn-sm" title="Remover do Carrinho">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
 
-                            <td>{{ item.preco_quantitativo_promocional|formata_preco }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
