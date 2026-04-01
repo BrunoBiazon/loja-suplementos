@@ -22,7 +22,6 @@ class UserForm(forms.ModelForm):
         label = 'Confirme a senha'
     )
     
-    
     def __init__(self, user=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.user = user
@@ -48,28 +47,42 @@ class UserForm(forms.ModelForm):
         error_msg_email_exists = 'Email digitado já existe'        
         error_msg_password_match = 'As senhas não conferem. Digite iguais.'       
         error_msg_password_short = 'Sua senha precisa de pelo menos 8 caracteres.'
-        error_msg_required_filed = 'Preencha esse campo.'
+        error_msg_required_field = 'Preencha esse campo.'
         
-        # user logado - update
+        # user logado - uptade 
         if self.user:
-            validation_error_msgs['username'] = 'teste logado '
+            if usuario_db and usuario_db.id != self.user.id:
+                validation_error_msgs['username'] = error_msg_user_exists
+            if email_db and email_db.id != self.user.id:
+                validation_error_msgs['email'] = error_msg_email_exists
             
-            
-        # user deslogado
+            if password_data or password2_data:
+                if not password_data or not password2_data:
+                    validation_error_msgs['password'] = error_msg_required_field
+                    validation_error_msgs['password_confirm'] = error_msg_required_field
+                elif password_data != password2_data:
+                    validation_error_msgs['password'] = error_msg_password_match
+                    validation_error_msgs['password_confirm'] = error_msg_password_match
+                elif len(password_data) < 8:
+                    validation_error_msgs['password'] = error_msg_password_short
+
+        # user deslogado - cadastro
         else:
             if usuario_db:
                 validation_error_msgs['username'] = error_msg_user_exists
-                
             if email_db:
                 validation_error_msgs['email'] = error_msg_email_exists
-                
-            if password_data != password_data2:
+            
+            if not password_data or not password2_data:
+                validation_error_msgs['password'] = error_msg_required_field
+                validation_error_msgs['password_confirm'] = error_msg_required_field
+            elif password_data != password2_data:
                 validation_error_msgs['password'] = error_msg_password_match
                 validation_error_msgs['password_confirm'] = error_msg_password_match
             elif len(password_data) < 8:
-                validation_error_msgs['password'] = error_msg_password_short    
+                validation_error_msgs['password'] = error_msg_password_short
                 
         if validation_error_msgs:
-            raise(forms.ValidationError(validation_error_msgs))
-        
+            raise forms.ValidationError(validation_error_msgs)
+
         return cleaned
