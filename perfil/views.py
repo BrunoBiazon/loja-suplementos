@@ -30,7 +30,8 @@ class BasePerfil(View):
     def get(self, *args, **kwargs):
         return self.renderizar
 class Criar(BasePerfil):
-    pass
+    def post(self,*args,**kwargs):
+        return self.renderizar
 
 class Update(BasePerfil):
     pass

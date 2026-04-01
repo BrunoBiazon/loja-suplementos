@@ -8,13 +8,13 @@ from utils.validacpf import valida_cpf
 class PerfilUsuario(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Users')
     idade = models.PositiveIntegerField()
-    data_nascimento = models.DateField()
-    cpf = models.CharField(max_length=11)
-    endereco = models.CharField(max_length=50)
-    numero = models.CharField(max_length = 5)
-    complento = models.CharField(max_length=50)
+    data_nascimento = models.DateField(verbose_name='Data de Nascimento')
+    cpf = models.CharField(max_length=11, verbose_name='CPF')
+    endereco = models.CharField(max_length=50, verbose_name='Endereço')
+    numero = models.CharField(max_length = 5, verbose_name='Número')
+    complemento = models.CharField(max_length=50)
     bairro = models.CharField(max_length=50)
-    cep = models.CharField(max_length=50)
+    cep = models.CharField(max_length=50, verbose_name='CEP')
     cidade = models.CharField(max_length=50)
     estado = models.CharField(
         max_length= 2,
