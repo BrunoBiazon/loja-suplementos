@@ -15,7 +15,9 @@
                     <p class="text-muted">Preencha os dados abaixo para sua conta.</p>
                     
                     <form method="POST" action="">
-                        {% csrf_token %} <div class="row">
+                    {% csrf_token %}
+
+                        <div class="row">
                             <div class="col-md-6">
                                 <h5 class="text-primary border-bottom pb-2 mb-3">Dados de Acesso</h5>
                                 {{ userform|crispy }}
