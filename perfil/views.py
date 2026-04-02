@@ -13,15 +13,23 @@ class BasePerfil(View):
 
     def setup(self, *args, **kwargs):
         super().setup(*args, **kwargs)
+        
+        data = self.request.POST or None
 
-        self.contexto = {
-            'userform': forms.UserForm(
-                data=self.request.POST or None
-            ),
-            'perfilform': forms.PerfilForm(
-                data=self.request.POST or None
-            )
-        }
+        if self.request.user.is_authenticated: # User antigo (uptade)
+            self.contexto = {
+                'userform': forms.UserForm(
+                    data=data,
+                    usuario=self.request.user,  
+                    instance=self.request.user   
+                ),
+                'perfilform': forms.PerfilForm(data=data)
+            }
+        else:
+            self.contexto = {
+                'userform': forms.UserForm(data=data), # User novo (cadastro)
+                'perfilform': forms.PerfilForm(data=data)
+            }
 
         self.renderizar = render(
             self.request, self.template_name, self.contexto
