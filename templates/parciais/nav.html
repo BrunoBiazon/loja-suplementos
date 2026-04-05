@@ -49,7 +49,7 @@
                     <i class="fas fa-user-circle fa-lg"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="navbarDropdownConta">
-                    <a class="dropdown-item" href="#">Detalhes da conta</a>
+                    <a class="dropdown-item" href="{% url 'perfil:update' %}">Detalhes da conta</a>
                     <a class="dropdown-item" href="#">Pedidos</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{% url 'perfil:logout' %}">Sair</a>
