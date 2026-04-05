@@ -8,6 +8,9 @@ from .models import Pedido, ItemPedido
 from produto import context_processors
 
 class Pagar(View):
+    def get(self, request, *arg, **kwargs):
+        return HttpResponse('PAGAR')
+class Salvar(View):
     template_name = 'pedido/pagar.html'
     
     def get(self, request, *arg, **kwargs):
@@ -79,10 +82,10 @@ class Pagar(View):
         )
         del request.session['carrinho']
         
-        return render(request, self.template_name, contexto)
-
-class Salvar(View):
-    pass
-
+        return redirect('lista')
+    
+class Lista(View):
+    def get(self, request, *arg, **kwargs):
+        return HttpResponse('lista')
 class Detalhe(View):
     pass
