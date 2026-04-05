@@ -41,19 +41,26 @@
                 </a>
             </li>
 
+            {% if user.is_authenticated %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownConta" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2">Conta</span>
+                    <span class="mr-2">{{ user.username }}</span>
                     <i class="fas fa-user-circle fa-lg"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="navbarDropdownConta"> <!-- fazer uma condicional para caso o user ja tenha logado-->
+                <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="navbarDropdownConta">
                     <a class="dropdown-item" href="#">Detalhes da conta</a>
                     <a class="dropdown-item" href="#">Pedidos</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item text-danger" href="{% url 'perfil:logout' %}">Sair</a>
                 </div>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'perfil:login' %}">Entrar / Cadastrar</a>
+            </li>
+        {% endif %}
+
         </ul>
 
         <form class="form-inline my-2 my-lg-0 ml-lg-3">
