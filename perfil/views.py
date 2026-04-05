@@ -127,4 +127,9 @@ class Login(View):
         return render(request, 'perfil/login.html', {'form': form})
 
 class Logout(View):
-    pass
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        
+        messages.success(request, 'Você saiu da sua conta com sucesso.')
+        
+        return redirect('/')
