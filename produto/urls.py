@@ -20,7 +20,8 @@ urlpatterns = [
     path('termo/', views.Termo.as_view(), name="termo"),
     path('hiper/', views.Hiper.as_view(), name="hiper"),
     path('endurance/', views.Endurance.as_view(), name="endurance"),
-
+    
+    path('promocao/<slug>', views.Detalheproduto.as_view(), name="detalhe_promocao"),
     path('snacks/<slug>', views.Detalheproduto.as_view(), name="detalhe_snack"),
     path('whey/<slug>', views.Detalheproduto.as_view(), name="detalhe_whey"),
     path('saude/<slug>', views.Detalheproduto.as_view(), name="detalhe_saude"),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('termo/<slug>', views.Detalheproduto.as_view(), name="detalhe_termo"),
     path('hiper/<slug>', views.Detalheproduto.as_view(), name="detalhe_hiper"),
     path('endurance/<slug>', views.Detalheproduto.as_view(), name="detalhe_endurance"),
+    
     
     path('<slug>', views.Detalheproduto.as_view(), name="detalhe"),
 ]

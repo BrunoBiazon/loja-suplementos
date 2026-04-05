@@ -133,7 +133,7 @@ class Carrinho(ListView):
 class ResumoCompra(View):
     def get(self, request, *args, **kwargs):
         
-        if not request.request.user.is_authenticated:
+        if not request.user.is_authenticated:
             messages.error(
                 request,
                 'Faça o login para acessar pagamentos'
@@ -141,7 +141,7 @@ class ResumoCompra(View):
             )
             return redirect('perfil:login')
         
-        if not request.request.session.get('carrinho'):
+        if not request.session.get('carrinho'):
             messages.error(
                 request,
                 'Coloque produtos no carrinho para acessar resumo da compra'
