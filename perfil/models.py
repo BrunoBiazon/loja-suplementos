@@ -6,7 +6,7 @@ import re
 from utils.validacpf import valida_cpf
 
 class PerfilUsuario(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Users')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Users', related_name='perfil')
     idade = models.PositiveIntegerField()
     data_nascimento = models.DateField(verbose_name='Data de Nascimento')
     cpf = models.CharField(max_length=11, verbose_name='CPF')
