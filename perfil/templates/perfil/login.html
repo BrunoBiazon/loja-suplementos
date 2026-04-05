@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5"> 
+            
+            <div class="card shadow border-0">
+
+                <div class="card-header bg-dark text-white p-3 text-center">
+                    <h3 class="mb-0">Entrar</h3>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <p class="text-muted text-center mb-4">
+                        Acesse sua conta para continuar.
+                    </p>
+                    
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        {{ form|crispy }}
+
+                        <hr class="my-4">
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            
+                            <a href="{% url 'perfil:criar' %}" class="text-secondary small">
+                                Não tem conta? Cadastre-se
+                            </a>
+
+                            <button type="submit" class="btn btn-success px-4 font-weight-bold">
+                                Entrar
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

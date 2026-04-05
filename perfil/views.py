@@ -8,7 +8,8 @@ from django.views import View
 
 from . import models
 from . import forms
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout
 class BasePerfil(View):
     template_name = 'perfil/criar.html'
 
@@ -104,8 +105,26 @@ class Update(BasePerfil):
 
         messages.error(self.request, "Erro ao atualizar dados.")
         return render(self.request, self.template_name, self.contexto)
-class Login(View):
-    pass
+class Login(View): 
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('/')
+        form = AuthenticationForm()
+        return render(request, 'perfil/login.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        
+        form = AuthenticationForm(request, data=request.POST)
+        
+        if form.is_valid():
+            user = form.get_user()
+            
+            login(request, user)
+            
+            return redirect('/') 
+        
+        messages.error(request, 'Usuário ou senha inválidos.')
+        return render(request, 'perfil/login.html', {'form': form})
 
 class Logout(View):
     pass
