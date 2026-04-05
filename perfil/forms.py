@@ -21,7 +21,7 @@ class PerfilForm(forms.ModelForm):
                 perfil_id = self.instance.pk 
                 if cpf_db:
                     if perfil_id is None or cpf_db.pk != perfil_id:
-                        validation_error_msgs['cpf'] = 'Este CPF já está cadastrado em outra conta.'  
+                        validation_error_msgs['cpf'] = 'Este CPF já está cadastrado.'  
                     
             if validation_error_msgs:    
                 raise forms.ValidationError(validation_error_msgs)
@@ -39,7 +39,7 @@ class UserForm(forms.ModelForm):
     password2 = forms.CharField(
         required= False,
         widget= forms.PasswordInput(),
-        label = 'Confirme a senha'
+        label = 'Confirme a senha'  
     )
     
     def __init__(self, user=None, *args, **kwargs):
