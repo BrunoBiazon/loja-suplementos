@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.views.generic.list import ListView
 from django.views import View
 from django.contrib import messages 
@@ -9,7 +9,9 @@ from produto import context_processors
 
 class Pagar(View):
     def get(self, request, *arg, **kwargs):
-        return HttpResponse('PAGAR')
+        pk = self.kwargs.get('pk')
+        pedido = Pedido.objects.get(pk=pk)
+        return render(request, 'pedido/pagar.html', {'pedido': pedido})
 class Salvar(View):
     template_name = 'pedido/pagar.html'
     
@@ -82,8 +84,13 @@ class Salvar(View):
         )
         del request.session['carrinho']
         
-        return redirect('lista')
-    
+        return redirect(
+            reverse(
+                'pedido:pagar',
+                kwargs= {'pk': pedido.pk
+                }
+            )
+        )
 class Lista(View):
     def get(self, request, *arg, **kwargs):
         return HttpResponse('lista')
