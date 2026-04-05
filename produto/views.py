@@ -161,6 +161,7 @@ class BaseCategoria(ListView):
 
         return queryset.order_by('-id')
     
+
 class Promocao(BaseCategoria):
     template_name = 'produto/promocao.html'
 
