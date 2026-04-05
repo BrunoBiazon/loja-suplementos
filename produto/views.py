@@ -130,129 +130,6 @@ class Carrinho(ListView):
     def get(self, request, *args, **kwargs):
         return render(request, 'produto/carrinho.html')
 
-
-class Promocao(ListView):
-    model = models.Produto
-    template_name = 'produto/promocao.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdPromocaoRelampago = super().get_queryset() 
-        
-        ProdPromocaoRelampago = ProdPromocaoRelampago.filter(promocao_relampago='S') 
-        
-        return ProdPromocaoRelampago
-    
-class Snacks(ListView):
-    model = models.Produto
-    template_name = 'produto/snacks.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdSnacks = super().get_queryset() 
-        
-        ProdSnacks =ProdSnacks.filter(categoria='Snacks').order_by('-id') 
-        
-        return ProdSnacks
-    
-    
-class Whey(ListView):
-    model = models.Produto
-    template_name = 'produto/whey.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdWhey = super().get_queryset() 
-        ProdWhey = ProdWhey.filter(categoria='Whey').order_by('-id') 
-        return ProdWhey
-
-
-class Saude(ListView):
-    model = models.Produto
-    template_name = 'produto/saude.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdSaude = super().get_queryset() 
-        ProdSaude = ProdSaude.filter(categoria='Saude').order_by('-id') 
-        return ProdSaude
-
-
-class Creatina(ListView):
-    model = models.Produto
-    template_name = 'produto/creatina.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdCreatina = super().get_queryset() 
-        ProdCreatina = ProdCreatina.filter(categoria='Creatina').order_by('-id') 
-        return ProdCreatina
-
-
-class Pretreino(ListView):
-    model = models.Produto
-    template_name = 'produto/pretreino.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdPretreino = super().get_queryset() 
-        ProdPretreino = ProdPretreino.filter(categoria='Pretreino').order_by('-id') 
-        return ProdPretreino
-
-
-class Termo(ListView):
-    model = models.Produto
-    template_name = 'produto/termo.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdTermo = super().get_queryset() 
-        ProdTermo = ProdTermo.filter(categoria='Termo').order_by('-id') 
-        return ProdTermo
-
-
-class Hiper(ListView):
-    model = models.Produto
-    template_name = 'produto/hiper.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdHiper = super().get_queryset() 
-        ProdHiper = ProdHiper.filter(categoria='Hiper').order_by('-id') 
-        return ProdHiper
-
-
-class Endurance(ListView):
-    model = models.Produto
-    template_name = 'produto/endurance.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdEndurance = super().get_queryset() 
-        ProdEndurance = ProdEndurance.filter(categoria='Endurance').order_by('-id') 
-        return ProdEndurance
-
-
-class Outro(ListView):
-    model = models.Produto
-    template_name = 'produto/outro.html'
-    context_object_name = 'produtos'
-    paginate_by = 12
-    
-    def get_queryset(self):
-        ProdOutro = super().get_queryset() 
-        ProdOutro = ProdOutro.filter(categoria='Outro').order_by('-id') 
-        return ProdOutro    
-
 class ResumoCompra(View):
     def get(self, request, *args, **kwargs):
         
@@ -266,3 +143,72 @@ class ResumoCompra(View):
         }
         # Corrigido: usamos 'render' para carregar o HTML
         return render(request, 'produto/resumocompra.html', contexto)
+    
+    
+class BaseCategoria(ListView):
+    model = models.Produto
+    context_object_name = 'produtos'
+    paginate_by = 12
+    template_name = 'produto/categoria.html'
+
+    categoria = None
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        if self.categoria:
+            queryset = queryset.filter(categoria=self.categoria)
+
+        return queryset.order_by('-id')
+    
+class Promocao(BaseCategoria):
+    template_name = 'produto/promocao.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(promocao_relampago='S')
+    
+class Snacks(BaseCategoria):
+    template_name = 'produto/snacks.html'
+    categoria = 'Snacks'
+
+
+class Whey(BaseCategoria):
+    template_name = 'produto/whey.html'
+    categoria = 'Whey'
+
+
+class Saude(BaseCategoria):
+    template_name = 'produto/saude.html'
+    categoria = 'Saude'
+
+
+class Creatina(BaseCategoria):
+    template_name = 'produto/creatina.html'
+    categoria = 'Creatina'
+
+
+class Pretreino(BaseCategoria):
+    template_name = 'produto/pretreino.html'
+    categoria = 'Pretreino'
+
+
+class Termo(BaseCategoria):
+    template_name = 'produto/termo.html'
+    categoria = 'Termo'
+
+
+class Hiper(BaseCategoria):
+    template_name = 'produto/hiper.html'
+    categoria = 'Hiper'
+
+
+class Endurance(BaseCategoria):
+    template_name = 'produto/endurance.html'
+    categoria = 'Endurance'
+
+
+class Outro(BaseCategoria):
+    template_name = 'produto/outro.html'
+    categoria = 'Outro'
+
