@@ -53,9 +53,10 @@ class Criar(BasePerfil):
 
         if userform.is_valid() and perfilform.is_valid():
             usuario = userform.save(commit=False)
-
-            usuario.is_staff = False
-            usuario.is_superuser = False
+            
+            TODO: removercomentario
+            # usuario.is_staff = False
+            # usuario.is_superuser = False
 
             senha = userform.cleaned_data.get('password')
             usuario.set_password(senha)

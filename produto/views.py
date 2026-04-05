@@ -253,5 +253,15 @@ class Outro(ListView):
         ProdOutro = ProdOutro.filter(categoria='Outro').order_by('-id') 
         return ProdOutro    
 
-class Finalizar(View):
-    pass
+class ResumoCompra(View):
+    def get(self, request, *args, **kwargs):
+        
+        if not request.user.is_authenticated:
+            return redirect('perfil:login')
+
+        contexto = {
+            'usuario': request.user,
+            'carrinho': request.session['carrinho'],
+        }
+        # Corrigido: usamos 'render' para carregar o HTML
+        return render(request, 'produto/resumocompra.html', contexto)
