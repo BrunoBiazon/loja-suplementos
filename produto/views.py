@@ -261,6 +261,7 @@ class ResumoCompra(View):
 
         contexto = {
             'usuario': request.user,
+            'perfil': request.user.perfil,
             'carrinho': request.session['carrinho'],
         }
         # Corrigido: usamos 'render' para carregar o HTML

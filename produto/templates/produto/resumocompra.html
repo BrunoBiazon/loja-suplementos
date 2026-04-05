@@ -2,62 +2,63 @@
 
 {% block conteudo %}
 
-        <div class="row mb-5">
-            <div class="col-lg">
-                <h2>Resumo da sua compra</h2>
-                <p class="lead">Dados do usuário</p>
-                <p>Caso precise editar, <a href="/perfil/update/">clique aqui</a></p>
-                <dl class="row">
-                    <dt class="col-lg-2">Nome:</dt>
-                    <dd class="col-lg-4">{{ usuario.first_name }}</dd>
-                    <dt class="col-lg-2">Sobrenome:</dt>
-                    <dd class="col-lg-4">{{ usuario.last_name }}</dd>
+<div class="row mb-5">
+    <div class="col-lg">
+        <h2>Resumo da sua compra</h2>
+        <p class="lead">Dados do usuário</p>
+        <p>Caso precise editar, <a href="/perfil/update/">clique aqui</a></p>
+        <dl class="row">
+            <dt class="col-lg-2">Nome:</dt>
+            <dd class="col-lg-4">{{ usuario.first_name }}</dd>
 
-                    <dt class="col-lg-2">Idade:</dt>
-                    <dd class="col-lg-4">{{ perfil.usuario.idade }}</dd>
-                    <dt class="col-lg-2">Nascimento:</dt>
-                    <dd class="col-lg-4">30 de Abril de 1898</dd>
+            <dt class="col-lg-2">Sobrenome:</dt>
+            <dd class="col-lg-4">{{ usuario.last_name }}</dd>
 
-                    <dt class="col-lg-2">CPF:</dt>
-                    <dd class="col-lg-4">{{ perfil.cpf}}</dd>
-                    <dt class="col-lg-2">E-mail:</dt>
-                    <dd class="col-lg-4">email@gmail.com</dd>
-                </dl>
+            <dt class="col-lg-2">Idade:</dt>
+            <dd class="col-lg-4">{{ perfil.idade }}</dd>
 
-                <p class="lead">Dados de endereço</p>
-                <dl class="row">
-                    <dt class="col-lg-2">Endereço:</dt>
-                    <dd class="col-lg-4">Av. Filho Junior</dd>
-                    <dt class="col-lg-2">Número:</dt>
-                    <dd class="col-lg-4">12</dd>
+            <dt class="col-lg-2">Nascimento:</dt>
+            <dd class="col-lg-4">{{ perfil.data_nascimento }}</dd>
 
-                    <dt class="col-lg-2">Complemento:</dt>
-                    <dd class="col-lg-4">Casa</dd>
-                    <dt class="col-lg-2">Nascimento:</dt>
-                    <dd class="col-lg-4">Centro</dd>
+            <dt class="col-lg-2">CPF:</dt>
+            <dd class="col-lg-4">{{ perfil.cpf }}</dd>
 
-                    <dt class="col-lg-2">Cidade:</dt>
-                    <dd class="col-lg-4">São Paulo</dd>
-                    <dt class="col-lg-2">Estado:</dt>
-                    <dd class="col-lg-4">SP</dd>
+            <dt class="col-lg-2">E-mail:</dt>
+            <dd class="col-lg-4">{{ usuario.email }}</dd>
+        </dl>
 
-                    <dt class="col-lg-2">CEP:</dt>
-                    <dd class="col-lg-4"></dd>
-                </dl>
-            </div>
-        </div>
+        <p class="lead">Dados de endereço</p>
+        <dl class="row">
+            <dt class="col-lg-2">Endereço:</dt>
+            <dd class="col-lg-4">{{ perfil.endereco }}</dd>
 
+            <dt class="col-lg-2">Número:</dt>
+            <dd class="col-lg-4">{{ perfil.numero }}</dd>
 
+            <dt class="col-lg-2">Complemento:</dt>
+            <dd class="col-lg-4">{{ perfil.complemento }}</dd>
 
-        <div class="row">
-            <div class="col">
-                <h3>Carrinho de compras</h3>
-                <p class="lead">Os produtos, quantidades e preços que você escolheu.</p>
-                    </table>
-                </div>
-            </div>
-        </div>
+            <dt class="col-lg-2">Bairro:</dt>
+            <dd class="col-lg-4">{{ perfil.bairro }}</dd>
 
+            <dt class="col-lg-2">Cidade:</dt>
+            <dd class="col-lg-4">{{ perfil.cidade }}</dd>
+
+            <dt class="col-lg-2">Estado:</dt>
+            <dd class="col-lg-4">{{ perfil.estado }}</dd>
+
+            <dt class="col-lg-2">CEP:</dt>
+            <dd class="col-lg-4">{{ perfil.cep }}</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h3>Carrinho de compras</h3>
+        <p class="lead">Os produtos, quantidades e preços que você escolheu.</p>
+    </div>
+</div>
 
 {% include 'parciais/listacompra.html' %}
 
