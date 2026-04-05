@@ -133,15 +133,28 @@ class Carrinho(ListView):
 class ResumoCompra(View):
     def get(self, request, *args, **kwargs):
         
-        if not request.user.is_authenticated:
+        if not request.request.user.is_authenticated:
+            messages.error(
+                request,
+                'Faça o login para acessar pagamentos'
+                
+            )
             return redirect('perfil:login')
+        
+        if not request.request.session.get('carrinho'):
+            messages.error(
+                request,
+                'Coloque produtos no carrinho para acessar resumo da compra'
+                
+            )
+            return redirect('produto:lista')
 
         contexto = {
             'usuario': request.user,
             'perfil': request.user.perfil,
             'carrinho': request.session['carrinho'],
         }
-        # Corrigido: usamos 'render' para carregar o HTML
+        
         return render(request, 'produto/resumocompra.html', contexto)
     
     
