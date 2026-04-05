@@ -7,60 +7,7 @@
     <div class="row">
         <div class="col">
             <h3 class="mb-4">Seu Carrinho</h3>
-            <div class="table-responsive">
-                <table class="table align-middle">
-                    <thead>
-                        <tr>
-                            <th class="d-none d-lg-table-cell">Imagem</th>
-                            <th>Produto</th>
-                            <th>V.</th>
-                            <th>QTD.</th>
-                            <th>Total</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in carrinho.values %}
-                        <tr>
-                            <td class="d-none d-lg-table-cell">
-                                {% if item.imagem %}
-                                    <a href="{% url 'produto:detalhe' item.slug %}">
-                                        <img src="{{ item.imagem }}" class="img-fluid rounded shadow-sm" width="60" alt="{{ item.produto_nome }}">
-                                    </a>
-                                {% endif %}
-                            </td>
-
-                            <td>
-                                <a href="{% url 'produto:detalhe' item.slug %}" class="text-dark text-decoration-none font-weight-bold">
-                                    {{ item.produto_nome }}
-                                </a>
-                            </td>
-                            <td>{{ item.variacao_nome }}</td>
-                            <td>
-                                {{ item.quantidade }}x
-                                {% if item.preco_quantitativo_promocional %}
-
-                                    {{ item.preco_unitario_promocional |formata_preco}}
-
-                                {% else %}
-
-                                    {{ item.preco_unitario|formata_preco}}
-                                {%endif %}
-                            </td>
-                            <td>
-                                {{ item.preco_quantitativo_promocional|formata_preco }}
-                            </td>
-                            <td>                             
-                                <a href="{% url 'produto:removerdocarrinho' %}?vid={{ item.variacao_id }}" class="btn btn-outline-danger btn-sm" title="Remover do Carrinho">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
-                            </td>
-
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+            {% include 'parciais/listacompra.html' %}
         </div>
     </div>
 
