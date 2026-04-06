@@ -7,9 +7,74 @@
 
 {% block conteudo %}
 
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th class="d-none d-lg-table-cell">Imagem</th>
+                <th>Produto</th>
+                <th>V.</th>
+                <th>QTD.</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in pedido.itempedido_set.all %}
+            <tr>
+                <td class="d-none d-lg-table-cell">
+                    {% if item.imagem %}
+                        <img src="{{ item.imagem }}" class="img-fluid rounded shadow-sm" width="60" alt="{{ item.produto }}">
+                    {% endif %}
+                </td>
 
-{% include 'parciais/listacompra.html' %}
-<div class="row mt-4">
+                <td>
+                    <span class="text-dark font-weight-bold">
+                        {{ item.produto }}
+                    </span>
+                </td>
+                <td>{{ item.variacao }}</td>
+                <td>
+                    {{ item.quantidade }}x 
+                    {% if item.preco_promocional %}
+                        {{ item.preco_promocional|formata_preco }}
+                    {% else %}
+                        {{ item.preco|formata_preco }}
+                    {% endif %}
+                </td>
+                <td>
+                    {# Mostra o subtotal daquele item específico #}
+                    {% if item.preco_promocional %}
+                        {{ item.preco_promocional|formata_preco }}
+                    {% else %}
+                        {{ item.preco|formata_preco }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="col">
+        <h3 class="mb-4">Resumo do Pedido #{{ pedido.id }}</h3>
+
+        <div class="row mt-4">
+            <div class="col-lg-2 font-weight-bold text-muted">Número do pedido:</div>
+            <div class="col-lg-4">#{{ pedido.id }}</div>
+
+            <div class="col-lg-2 font-weight-bold text-muted">Total a pagar:</div>
+            <div class="col-lg-4 text-primary font-weight-bold">R$ {{ pedido.total }}</div>
+
+            <div class="col-lg-2 font-weight-bold text-muted mt-2">QTD. Itens:</div>
+            <div class="col-lg-4 mt-2">{{ pedido.qnt_total }}</div>
+
+            <div class="col-lg-2 font-weight-bold text-muted mt-2">Status:</div>
+            <div class="col-lg-4 mt-2">
+                <span class="badge badge-warning">{{ pedido.get_status_display }}</span>
+            </div>
+        </div>
+
+<div class="row mt-4 padding-50" >
     <div class="col">
         <a href="{{ link_pagamento }}" class="btn btn-success btn-block btn-lg shadow">
             <i class="fas fa-credit-card"></i> Pagar Agora (Mercado Pago)

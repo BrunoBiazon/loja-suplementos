@@ -5,12 +5,12 @@
     {% include 'parciais/head.html' %}
     <title>{% block titulo %}Início{% endblock %}</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     
     {% include 'parciais/nav.html' %}
 
-    <main class="container mt-4 mb-4">
-        {%include 'parciais/_messages.html' %}
+    <main class="container mt-4 mb-4 flex-grow-1">
+        {% include 'parciais/_messages.html' %}
         {% block conteudo %} {% endblock %}
     </main>
 
