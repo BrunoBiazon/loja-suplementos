@@ -32,6 +32,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     
     'jill-unchastened-stewart.ngrok-free.dev',
+    '127.0.0.1', 
+    'localhost',
 ]
 #TODO remover ngrok
 CSRF_TRUSTED_ORIGINS = ['https://jill-unchastened-stewart.ngrok-free.dev']
