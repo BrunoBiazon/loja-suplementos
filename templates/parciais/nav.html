@@ -63,9 +63,9 @@
 
         </ul>
 
-        <form class="form-inline my-2 my-lg-0 ml-lg-3">
+        <form action="{% url 'produto:buscar' %}" method="GET" class="form-inline my-2 my-lg-0 ml-lg-3">
             <div class="input-group">
-                <input class="form-control form-control-sm" type="search" placeholder="Buscar produto..." aria-label="Search">
+                <input class="form-control form-control-sm" type="search" name="buscar" value="{{ request.GET.buscar }}" placeholder="Buscar produto..." aria-label="Search">
                 <div class="input-group-append">
                     <button class="btn btn-sm btn-secondary" type="submit">
                         <i class="fas fa-search"></i>

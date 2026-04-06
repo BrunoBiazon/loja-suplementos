@@ -212,7 +212,7 @@ class Detalhe(DetailView):
     context_object_name = 'pedido'
 
     def dispatch(self, request, *args, **kwargs):
-        pedido = self.get_object()
+        pedido = self.get_object()  
         
         if pedido.usuario != request.user:
             messages.error(request, "Você não tem permissão para ver este pedido.")

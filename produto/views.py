@@ -6,12 +6,27 @@ from django.http import HttpResponse
 from django.contrib import messages
 from . import models
 from pprint import pprint # teste carrinho
-
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 class ListaProdutos(ListView):
     model = models.Produto
     template_name = 'produto/lista.html'
     context_object_name = 'produtos'
     paginate_by = 12
+    
+def buscar(request):
+    produtos = models.Produto.objects.order_by("-id")
+    
+    if "buscar" in request.GET:
+        termo = request.GET['buscar']
+        if termo:
+            vetor = SearchVector('nome', weight='A') + SearchVector('descricao_curta', weight='B')
+            query = SearchQuery(termo)
+            
+            produtos = models.Produto.objects.annotate(
+                rank=SearchRank(vetor, query)
+            ).filter(rank__gte=0.1).order_by('-rank')
+            
+    return render(request, "produto/buscar.html", {"produtos": produtos})
 class Detalheproduto(DetailView):
     model = models.Produto
     template_name = 'produto/detalhe.html'
