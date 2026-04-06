@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from django.contrib.messages import constants
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -182,3 +184,5 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+MERCADO_PAGO_TOKEN = os.getenv('MP_ACCESS_TOKEN')

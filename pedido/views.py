@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from django.views.generic.list import ListView
+from django.views.generic import DetailView
 from django.views import View
 from django.contrib import messages 
 
@@ -7,11 +7,49 @@ from produto.models import Variacao
 from .models import Pedido, ItemPedido
 from produto import context_processors
 
-class Pagar(View):
-    def get(self, request, *arg, **kwargs):
-        pk = self.kwargs.get('pk')
-        pedido = Pedido.objects.get(pk=pk)
-        return render(request, 'pedido/pagar.html', {'pedido': pedido})
+import mercadopago
+from django.conf import settings
+class Pagar(DetailView):
+    template_name = 'pedido/pagar.html'
+    model = Pedido
+    pk_url_kwarg = 'pk'
+    context_object_name = 'pedido'
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        pedido = self.get_object()
+
+        
+        sdk = mercadopago.SDK(settings.MERCADO_PAGO_TOKEN)
+
+        
+        preference_data = {
+            "items": [
+                {
+                    "title": f"Pedido #{pedido.pk} - Smart Suplementos",
+                    "quantity": 1,
+                    "unit_price": float(pedido.total), 
+                }
+            ],
+            "back_urls": {
+                "success": "http://127.0.0.1:8000/pedido/sucesso/",
+                "failure": "http://127.0.0.1:8000/pedido/erro/",
+                "pending": "http://127.0.0.1:8000/pedido/pendente/"
+            },
+        }
+
+        preference_response = sdk.preference().create(preference_data)
+        preference = preference_response["response"]
+
+        #TODO debug mercado pago
+        if 'init_point' not in preference:
+            print(" ERRO DO MERCADO PAGO")
+            print(preference) 
+            contexto['link_pagamento'] = "#" 
+        else:
+            contexto['link_pagamento'] = preference['init_point']
+        
+        return contexto
 class Salvar(View):
     template_name = 'pedido/pagar.html'
     

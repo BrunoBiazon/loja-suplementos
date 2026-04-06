@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
 
+{% block titulo %}Pagamento{% endblock %}
+
+{% load filtros %}
+{% load static %}
+
 {% block conteudo %}
+
+
+{% include 'parciais/listacompra.html' %}
+<div class="row mt-4">
+    <div class="col">
+        <a href="{{ link_pagamento }}" class="btn btn-success btn-block btn-lg shadow">
+            <i class="fas fa-credit-card"></i> Pagar Agora (Mercado Pago)
+        </a>
+    </div>
+</div>
+
 
 {% endblock %}
