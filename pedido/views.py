@@ -32,10 +32,12 @@ class Pagar(DetailView):
                 }
             ],
             "back_urls": {
-                "success": "http://127.0.0.1:8000/pedido/sucesso/",
-                "failure": "http://127.0.0.1:8000/pedido/erro/",
-                "pending": "http://127.0.0.1:8000/pedido/pendente/"
+                "success": "http://127.0.0.1:8000/pedido/retorno/",
+                "failure": "http://127.0.0.1:8000/pedido/retorno/",
+                "pending": "http://127.0.0.1:8000/pedido/retorno/"
             },
+            # TODO remover a fazer deploy para teste do mercado pago 
+            # " auto_return": "approved",
         }
 
         preference_response = sdk.preference().create(preference_data)
@@ -129,6 +131,19 @@ class Salvar(View):
                 }
             )
         )
+        
+class RetornoPagamento(View):
+    def get(self, request, *args, **kwargs):
+        status = request.GET.get('status')
+        
+        if status == 'approved':
+            messages.success(request, 'Pagamento aprovado! Você pode chegar na aba pedidos no perfil')
+        elif status == 'pending':
+            messages.warning(request, 'Seu pagamento está em análise pelo Mercado Pago.')
+        else:
+            messages.error(request, 'O pagamento não foi concluído. Tente novamente.')
+
+        return redirect('produto:lista')
 class Lista(View):
     def get(self, request, *arg, **kwargs):
         return HttpResponse('lista')
