@@ -211,11 +211,17 @@ class Detalhe(DetailView):
     pk_url_kwarg = 'pk'
     context_object_name = 'pedido'
 
+    def dispatch(self, request, *args, **kwargs):
+        pedido = self.get_object()
+        
+        if pedido.usuario != request.user:
+            messages.error(request, "Você não tem permissão para ver este pedido.")
+            return redirect('produto:lista')
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         contexto = super().get_context_data(**kwargs)
         pedido = self.get_object()
         
-        if pedido.usuario != self.request.user:
-            raise PermissionDenied("Você não tem permissão para ver este pedido.")
         contexto['itens'] = ItemPedido.objects.filter(pedido=pedido)
         return contexto
