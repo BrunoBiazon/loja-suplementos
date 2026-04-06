@@ -205,5 +205,17 @@ class Lista(View):
         print("lista")
         pedidos = Pedido.objects.filter(usuario=request.user).order_by('-pk') if request.user.is_authenticated else Pedido.objects.all()
         return render(request, 'pedido/lista.html', {'pedidos': pedidos})
-class Detalhe(View):
-    pass
+class Detalhe(DetailView):
+    model = Pedido
+    template_name = 'pedido/detalhe.html'
+    pk_url_kwarg = 'pk'
+    context_object_name = 'pedido'
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        pedido = self.get_object()
+        
+        if pedido.usuario != self.request.user:
+            raise PermissionDenied("Você não tem permissão para ver este pedido.")
+        contexto['itens'] = ItemPedido.objects.filter(pedido=pedido)
+        return contexto

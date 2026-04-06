@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+
+{% block titulo %}Lista de pedidos{% endblock %}
 {% load static %}
 
 {% block conteudo %}
@@ -31,8 +33,8 @@
                                     Finalizado
                                 {% endif %}
                             </p>
-                            <a href="#" class="btn btn-primary">Ver Detalhes</a>
-                        </div>    <!--  "% url 'pedido:detalhe' pk=pedido.pk %"  -->
+                            <a href="{% url 'pedido:detalhe' pk=pedido.pk %}"  class="btn btn-primary">Teste</a>
+                        </div>    
                     </div>
                 </div>
             {% endfor %}
