@@ -32,12 +32,12 @@ class Pagar(DetailView):
                 }
             ],
             "back_urls": {
-                "success": "http://127.0.0.1:8000/pedido/retorno/",
-                "failure": "http://127.0.0.1:8000/pedido/retorno/",
-                "pending": "http://127.0.0.1:8000/pedido/retorno/"
+                "success": "https://jill-unchastened-stewart.ngrok-free.dev/pedido/retorno/",
+                "failure": "https://jill-unchastened-stewart.ngrok-free.dev/pedido/retorno/",
+                "pending": "https://jill-unchastened-stewart.ngrok-free.dev/pedido/retorno/"
             },
             # TODO remover a fazer deploy para teste do mercado pago 
-            # " auto_return": "approved",
+            " auto_return": "approved",
         }
 
         preference_response = sdk.preference().create(preference_data)
