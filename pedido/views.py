@@ -198,7 +198,12 @@ def MercadoPago(request):
 
     return HttpResponse(status=200)
 class Lista(View):
-    def get(self, request, *arg, **kwargs):
-        return HttpResponse('lista')
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, 'Faça login para ver seus pedidos.')
+            return redirect('perfil:login')
+        print("lista")
+        pedidos = Pedido.objects.filter(usuario=request.user).order_by('-pk') if request.user.is_authenticated else Pedido.objects.all()
+        return render(request, 'pedido/lista.html', {'pedidos': pedidos})
 class Detalhe(View):
     pass

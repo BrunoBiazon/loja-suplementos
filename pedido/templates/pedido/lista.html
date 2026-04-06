@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block conteudo %}
+<div class="container mt-4">
+    <h2>Meus Pedidos</h2>
+    
+    {% if pedidos  %}
+        <div class="row">
+            {% for pedido in pedidos %}
+                <div class="col-md-12 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Pedido #{{ pedido.pk }}</h5>
+                            <p class="card-text">
+                                <strong>ID do Pedido:</strong> {{ pedido.pk }}<br>
+                                <strong>Total:</strong> R$ {{ pedido.total|floatformat:2 }}<br>
+                                <strong>Quantidade de Itens:</strong> {{ pedido.qnt_total }}<br>
+                                <strong>Status:</strong> 
+                                {% if pedido.status == 'C' %}
+                                    Criado
+                                {% elif pedido.status == 'A' %}
+                                    Aprovado
+                                {% elif pedido.status == 'R' %}
+                                    Reprovado
+                                {% elif pedido.status == 'P' %}
+                                    Pendente
+                                {% elif pedido.status == 'E' %}
+                                    Enviado
+                                {% elif pedido.status == 'F' %}
+                                    Finalizado
+                                {% endif %}
+                            </p>
+                            <a href="#" class="btn btn-primary">Ver Detalhes</a>
+                        </div>    <!--  "% url 'pedido:detalhe' pk=pedido.pk %"  -->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Você ainda não fez nenhum pedido.</p>
+    {% endif %}
+</div>
+{% endblock %}
