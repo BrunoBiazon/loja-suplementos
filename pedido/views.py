@@ -38,17 +38,13 @@ class Pagar(DetailView):
                 "failure": "https://jill-unchastened-stewart.ngrok-free.dev/pedido/retorno/",
                 "pending": "https://jill-unchastened-stewart.ngrok-free.dev/pedido/retorno/"
             },
-            # TODO remover a fazer deploy para teste do mercado pago 
             " auto_return": "approved",
         }
 
         preference_response = sdk.preference().create(preference_data)
         preference = preference_response["response"]
 
-        #TODO debug mercado pago
         if 'init_point' not in preference:
-            print(" ERRO DO MERCADO PAGO")
-            print(preference) 
             contexto['link_pagamento'] = "#" 
         else:
             contexto['link_pagamento'] = preference['init_point']
@@ -202,7 +198,6 @@ class Lista(View):
         if not request.user.is_authenticated:
             messages.error(request, 'Faça login para ver seus pedidos.')
             return redirect('perfil:login')
-        print("lista")
         pedidos = Pedido.objects.filter(usuario=request.user).order_by('-pk') if request.user.is_authenticated else Pedido.objects.all()
         return render(request, 'pedido/lista.html', {'pedidos': pedidos})
 class Detalhe(DetailView):

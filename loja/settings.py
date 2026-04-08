@@ -35,9 +35,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1', 
     'localhost',
 ]
-#TODO remover ngrok
 CSRF_TRUSTED_ORIGINS = ['https://jill-unchastened-stewart.ngrok-free.dev']
-# Application definition
+
 
 INSTALLED_APPS = [
     'perfil',
@@ -51,9 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap4',
-    
- # TODO: REMOVER DEBUG 
-    "debug_toolbar",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
@@ -69,9 +65,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
-    
- # TODO: REMOVER DEBUG  
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'loja.urls'
