@@ -119,7 +119,7 @@ Nesta opção, você não precisa do código fonte, apenas do arquivo de orquest
 
 ---
 
-### Opção 2: Via Git (Analisar código e Build local)
+### Opção 2: Via Git 
 
 Nesta opção, você terá acesso a todo o código fonte e construirá a imagem do zero na sua máquina.
 
@@ -137,5 +137,18 @@ Nesta opção, você terá acesso a todo o código fonte e construirá a imagem 
     docker-compose exec web python manage.py createsuperuser
 
 ---
+## Acessando a aplicação
 
+O modo como você acessa a loja depende do que deseja testar:
+
+### 1. Navegação Padrão (Localhost) - Caso não queria configurar webbook mercado pago.
+Para navegar pela loja, ver o layout e gerenciar o catálogo, acesse diretamente:
+👉 **http://localhost:8000**
+* **Painel Administrativo:** `http://localhost:8000/admin` (Use as credenciais do `createsuperuser`).
+
+### 2. Teste de Pagamento Completo (Ngrok)
+Para testar o fluxo de checkout e receber o retorno (Webhooks) do Mercado Pago mudando o status do pedido em tempo real, você **deve** acessar a loja através do túnel Ngrok:
+1. Inicie o túnel no seu terminal: `ngrok http 8000`
+2. Acesse a URL HTTPS gerada (Ex: `https://sua-url.ngrok-free.dev`).
+3. Certifique-se de que essa URL está configurada no painel do Mercado Pago e no seu arquivo `.env` (se necessário).
 ---
