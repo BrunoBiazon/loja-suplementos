@@ -20,14 +20,14 @@ Uma plataforma completa de e-commerce focada no nicho de suplementação aliment
 ---
 ## 📸 Preview
 
-<p align="center">
-  <img src="#" width="800" alt="Tela Inicial da Loja">
-</p>
+### Tela inicial
+<img width="1879" height="930" alt="image" src="https://github.com/user-attachments/assets/9b2d949e-3aff-4cc2-ab16-8c5d874b9f63" />
 
-<p align="center">
-  <img src="#" width="400" alt="Tela de Checkout Mercado Pago">
-  <img src="#" width="400" alt="Painel Administrativo Django">
-</p>
+### Checkout Pagamento
+
+### Tela Admin Django
+<img width="1812" height="791" alt="image" src="https://github.com/user-attachments/assets/64fb7d01-ebfa-4271-86df-817038c61d15" />
+
 
 ## Arquitetura e Deploy
 
