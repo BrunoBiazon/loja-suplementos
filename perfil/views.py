@@ -63,6 +63,8 @@ class Criar(BasePerfil):
             perfil.user = usuario
             perfil.save()
 
+            login(request, usuario)
+
             messages.success(request, "Usuário cadastrado com sucesso.")
             return redirect('/')
 
@@ -133,4 +135,4 @@ class Logout(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         messages.success(request, 'Você saiu da sua conta com sucesso.')
-        return redirect('/')
+        return redirect('/')    

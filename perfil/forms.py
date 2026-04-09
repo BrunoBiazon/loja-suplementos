@@ -31,15 +31,15 @@ class PerfilForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     
     password = forms.CharField(
-        required= False,
-        widget= forms.PasswordInput(),
-        label = 'Senha'
+        required=False,
+        widget=forms.PasswordInput(),
+        label='Senha'
     )
     
     password2 = forms.CharField(
-        required= False,
-        widget= forms.PasswordInput(),
-        label = 'Confirme a senha'  
+        required=False,
+        widget=forms.PasswordInput(),
+        label='Confirme a senha'  
     )
     
     def __init__(self, user=None, *args, **kwargs):
@@ -48,7 +48,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'password', 'password2','email')
+        fields = ('first_name', 'last_name', 'username', 'password', 'password2', 'email')
 
     def clean(self, *args, **kwargs):
         cleaned = self.cleaned_data
@@ -68,7 +68,6 @@ class UserForm(forms.ModelForm):
         error_msg_password_short = 'Sua senha precisa de pelo menos 8 caracteres.'
         error_msg_required_field = 'Preencha esse campo.'
         
-        # user logado - uptade 
         if self.user:
             if usuario_db and usuario_db.id != self.user.id:
                 validation_error_msgs['username'] = error_msg_user_exists
@@ -84,8 +83,10 @@ class UserForm(forms.ModelForm):
                     validation_error_msgs['password2'] = error_msg_password_match
                 elif len(password_data) < 8:
                     validation_error_msgs['password'] = error_msg_password_short
+            else:
+                cleaned['password'] = None
+                cleaned['password2'] = None
 
-        # user deslogado - cadastro
         else:
             if usuario_db:
                 validation_error_msgs['username'] = error_msg_user_exists
