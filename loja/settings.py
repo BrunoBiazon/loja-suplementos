@@ -23,20 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*-lmnp2f-kqy&(-1f)(8kj*s8x6%+3649mi%qh_5hin(wt0=42'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-*-lmnp2f-kqy&(-1f)(8kj*s8x6%+3649mi%qh_5hin(wt0=42')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = [
-    
-    'jill-unchastened-stewart.ngrok-free.dev',
-    '127.0.0.1', 
-    'localhost',
-]
-CSRF_TRUSTED_ORIGINS = ['https://jill-unchastened-stewart.ngrok-free.dev']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost:8000').split(',')
 
 INSTALLED_APPS = [
     'perfil',
@@ -168,14 +161,6 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
 # Salvar a cada requisição
 SESSION_SAVE_EVERY_REQUEST = False
 
-# Serializer - Padrão JSON
-# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-
-# Para sessions em arquivos ao invés da base de dados
-# SESSION_ENGINE = "django.contrib.sessions.backends.file"
-# SESSION_FILE_PATH = '/home/luizotavio/Desktop/temp'
-
- # TODO: REMOVER DEBUG 
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
