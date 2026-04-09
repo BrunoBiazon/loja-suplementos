@@ -18,6 +18,16 @@ Uma plataforma completa de e-commerce focada no nicho de suplementação aliment
 * **Segurança:** Variáveis de ambiente protegidas e isolamento de processos via containers.
 
 ---
+## 📸 Preview
+
+<p align="center">
+  <img src="#" width="800" alt="Tela Inicial da Loja">
+</p>
+
+<p align="center">
+  <img src="#" width="400" alt="Tela de Checkout Mercado Pago">
+  <img src="#" width="400" alt="Painel Administrativo Django">
+</p>
 
 ## Arquitetura e Deploy
 
