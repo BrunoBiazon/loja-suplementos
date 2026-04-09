@@ -24,6 +24,7 @@ Uma plataforma completa de e-commerce focada no nicho de suplementação aliment
 * **Docker Hub:** A imagem da aplicação está versionada e disponível para pull.
 * **PostgreSQL:** Banco de dados robusto rodando em container isolado.
 * **AWS EC2:** Hospedagem em servidor Ubuntu na nuvem.
+   - Tipo de instância: t3.micro.
 * **Ngrok:** Túnel seguro com suporte a HTTPS para comunicação com webhooks de pagamento.
 * **Persistência:** Uso de Docker Volumes para manter dados do banco e arquivos de mídia (fotos de produtos) seguros.
 
@@ -36,7 +37,7 @@ A administração remota da infraestrutura e a configuração de rede do servido
 Para garantir a alta disponibilidade e a comunicação contínua com os webhooks de pagamento (Mesmo quando o acesso SSH é encerrado), a seguinte arquitetura de rede local foi aplicada:
 
 1. **Acesso SSH:** Conexão segura estabelecida com o servidor Ubuntu na AWS utilizando chaves `.pem`.
-2. **Processos em Background (`screen`):** Utilização da ferramenta de multiplexação de terminal `screen` do Linux. Isso permite iniciar os containers Docker e túneis de rede em sessões desacopladas (detached), garantindo que a aplicação não caia ao fechar o MobaXterm.
+2. **Processos em Background (`screen`):** Utilização da ferramenta de multiplexação de terminal `screen` do Linux. Garantindo que a aplicação não caia ao fechar o MobaXterm, inicialização automática.
 3. **Túnel Ngrok Seguro:** Execução do **Ngrok** em segundo plano para expor portas específicas do servidor localmente, criando um túnel HTTPS seguro vital para receber os callbacks (Webhooks) de mudança de status de pagamento do Mercado Pago.
 
 ---
