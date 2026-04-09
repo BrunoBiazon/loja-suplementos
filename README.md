@@ -48,7 +48,9 @@ Caso queria ver o checkout de pagamento, será necessário configurar o mercado 
 
 ### 💳 Configurando o Mercado Pago (API e Webhooks)
 
-Para que o checkout e a atualização de status de pedidos funcionem, você precisa configurar as suas credenciais do Mercado Pago:
+Para que o checkout e a atualização de status de pedidos funcionem, você precisa configurar as suas credenciais do Mercado Pago: <br><br>
+O link a seguir é próprio deles, explica muito bem como criar a aplicação/integração: https://www.mercadopago.com.br/developers/pt/docs/checkout-pro/create-application
+
 
 1. Acesse o [Painel de Desenvolvedores do Mercado Pago](https://www.mercadopago.com.br/developers/panel/applications).
 2. Crie uma nova aplicação e copie o seu **Access Token** (pode ser as credenciais de Teste ou Produção).
