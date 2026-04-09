@@ -12,6 +12,7 @@ services:
     restart: always
 
   web:
+    build: .
     image: brunobiazon/loja-suplementos:latest
     command: >
       sh -c "python manage.py migrate &&

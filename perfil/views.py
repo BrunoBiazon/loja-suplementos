@@ -41,7 +41,6 @@ class BasePerfil(View):
 
 
 class Criar(BasePerfil):
-
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('/')
@@ -56,7 +55,6 @@ class Criar(BasePerfil):
 
             senha = userform.cleaned_data.get('password')
             usuario.set_password(senha)
-
             usuario.save()
 
             perfil = perfilform.save(commit=False)
@@ -73,7 +71,6 @@ class Criar(BasePerfil):
 
 
 class Update(BasePerfil):
-
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return redirect('perfil:login')
@@ -82,22 +79,22 @@ class Update(BasePerfil):
     def post(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return redirect('perfil:login')
-
+        print("=teste")
         userform = self.contexto['userform']
         perfilform = self.contexto['perfilform']
 
         if userform.is_valid() and perfilform.is_valid():
             usuario = userform.save(commit=False)
-
+            
             senha = userform.cleaned_data.get('password')
+            campos_usuario = ['first_name', 'last_name', 'username', 'email']
 
             if senha:
                 usuario.set_password(senha)
-
-            usuario.save()
-
-            if senha:
+                campos_usuario.append('password') 
                 update_session_auth_hash(request, usuario)
+            
+            usuario.save(update_fields=campos_usuario)
 
             perfil = perfilform.save(commit=False)
             perfil.user = usuario
@@ -111,7 +108,6 @@ class Update(BasePerfil):
 
 
 class Login(View):
-
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('/')
@@ -131,8 +127,7 @@ class Login(View):
 
 
 class Logout(View):
-
     def get(self, request, *args, **kwargs):
         logout(request)
         messages.success(request, 'Você saiu da sua conta com sucesso.')
-        return redirect('/')    
+        return redirect('/')

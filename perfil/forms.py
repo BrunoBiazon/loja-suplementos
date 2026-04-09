@@ -10,26 +10,25 @@ class PerfilForm(forms.ModelForm):
         exclude = ('user',)
 
     def clean(self, *args, **kwargs):
-            cleaned = super().clean()
-            validation_error_msgs = {}
+        cleaned = super().clean()
+        validation_error_msgs = {}
+        
+        cpf_data = cleaned.get('cpf')
+        
+        if cpf_data:
+            cpf_db = models.PerfilUsuario.objects.filter(cpf=cpf_data).first()
             
-            cpf_data = cleaned.get('cpf')
+            perfil_id = self.instance.pk 
+            if cpf_db:
+                if perfil_id is None or cpf_db.pk != perfil_id:
+                    validation_error_msgs['cpf'] = 'Este CPF já está cadastrado.'  
             
-            if cpf_data:
-                cpf_db = models.PerfilUsuario.objects.filter(cpf=cpf_data).first()
-                
-                perfil_id = self.instance.pk 
-                if cpf_db:
-                    if perfil_id is None or cpf_db.pk != perfil_id:
-                        validation_error_msgs['cpf'] = 'Este CPF já está cadastrado.'  
-                    
-            if validation_error_msgs:    
-                raise forms.ValidationError(validation_error_msgs)
-            
-            return cleaned
+        if validation_error_msgs:    
+            raise forms.ValidationError(validation_error_msgs)
+        
+        return cleaned
     
 class UserForm(forms.ModelForm):
-    
     password = forms.CharField(
         required=False,
         widget=forms.PasswordInput(),
@@ -48,7 +47,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'password', 'password2', 'email')
+        fields = ('first_name', 'last_name', 'username', 'email')
 
     def clean(self, *args, **kwargs):
         cleaned = self.cleaned_data
@@ -83,9 +82,6 @@ class UserForm(forms.ModelForm):
                     validation_error_msgs['password2'] = error_msg_password_match
                 elif len(password_data) < 8:
                     validation_error_msgs['password'] = error_msg_password_short
-            else:
-                cleaned['password'] = None
-                cleaned['password2'] = None
 
         else:
             if usuario_db:
