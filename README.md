@@ -151,7 +151,9 @@ Nesta opção, você terá acesso a todo o código fonte e construirá a imagem 
 ---
 ## Acessando a aplicação
 
-O modo como você acessa a loja depende do que deseja testar:
+### Deploy: https://jill-unchastened-stewart.ngrok-free.dev
+
+### Sua execução:
 
 ### 1. Navegação Padrão (Localhost) - Caso não queria configurar webbook mercado pago.
 Para navegar pela loja, ver o layout e gerenciar o catálogo, acesse diretamente:
