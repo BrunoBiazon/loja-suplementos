@@ -24,7 +24,7 @@ Uma plataforma completa de e-commerce focada no nicho de suplementação aliment
 <img width="1879" height="930" alt="image" src="https://github.com/user-attachments/assets/9b2d949e-3aff-4cc2-ab16-8c5d874b9f63" />
 
 ### Checkout Pagamento
-
+![Checkout](https://github.com/user-attachments/assets/b4a31b9d-df9f-4fc3-a92c-02cf89842e17)
 ### Tela Admin Django
 <img width="1812" height="791" alt="image" src="https://github.com/user-attachments/assets/64fb7d01-ebfa-4271-86df-817038c61d15" />
 
