@@ -23,10 +23,11 @@ Uma plataforma completa de e-commerce focada no nicho de suplementação aliment
 ### Tela inicial
 <img width="1879" height="930" alt="image" src="https://github.com/user-attachments/assets/9b2d949e-3aff-4cc2-ab16-8c5d874b9f63" />
 
-### Checkout Pagamento
-![Checkout](https://github.com/user-attachments/assets/b4a31b9d-df9f-4fc3-a92c-02cf89842e17)
+
+
 ### Tela Admin Django
 <img width="1812" height="791" alt="image" src="https://github.com/user-attachments/assets/64fb7d01-ebfa-4271-86df-817038c61d15" />
+
 
 
 ## Arquitetura e Deploy
@@ -41,7 +42,8 @@ Uma plataforma completa de e-commerce focada no nicho de suplementação aliment
 ---
 
 ## Como foi configurado o servidor/rede:
-
+#### Resumo Da Instância
+<img width="1072" height="360" alt="image" src="https://github.com/user-attachments/assets/dcee42d6-7b5c-4eba-8429-6ef8794354b0" />
 A administração remota da infraestrutura e a configuração de rede do servidor EC2 foram realizadas utilizando o cliente **MobaXterm**. 
 
 Para garantir a alta disponibilidade e a comunicação contínua com os webhooks de pagamento (Mesmo quando o acesso SSH é encerrado), a seguinte arquitetura de rede local foi aplicada:
@@ -52,17 +54,16 @@ Para garantir a alta disponibilidade e a comunicação contínua com os webhooks
 
 ---
 <br><br>
-
-## 🛠️ Como Executar o Projeto
+# 🛠️ Como Executar o Projeto
 Caso queria ver o checkout de pagamento, será necessário configurar o mercado pago e colocar o token no .env .
 
 ### 💳 Configurando o Mercado Pago (API e Webhooks)
-
+#### Checkout Pagamento ( GIF )
+![Checkout](https://github.com/user-attachments/assets/b4a31b9d-df9f-4fc3-a92c-02cf89842e17)
+1. Acesse o [Painel de Desenvolvedores do Mercado Pago](https://www.mercadopago.com.br/developers/panel/applications).
 Para que o checkout e a atualização de status de pedidos funcionem, você precisa configurar as suas credenciais do Mercado Pago: <br><br>
 O link a seguir é próprio deles, explica muito bem como criar a aplicação/integração: https://www.mercadopago.com.br/developers/pt/docs/checkout-pro/create-application
 
-
-1. Acesse o [Painel de Desenvolvedores do Mercado Pago](https://www.mercadopago.com.br/developers/panel/applications).
 2. Crie uma nova aplicação e copie o seu **Access Token** (pode ser as credenciais de Teste ou Produção).
 3. Cole esse token no arquivo `.env` na variável `MP_ACCESS_TOKEN`.
 4. **Configuração do Webhook (Para testes locais):**
